@@ -43,7 +43,7 @@ Console.WriteLine($"The amount of numbers that /2 without rest is: {quantity}");
 
 
 // Console.Clear();
-
+/*
 Console.Write($"Input the quantity of numbers: ");
 int numberElements = Convert.ToInt32(Console.ReadLine()); 
 
@@ -69,3 +69,35 @@ int RandomNumbers(int numberElements, int min, int max)
 int randomNumbers =  RandomNumbers(numberElements, 1, 10);
 
 Console.WriteLine($"\nThe sum of the elements that don't /2 without the rest is: {randomNumbers}");
+*/
+// Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
+// [3 7 22 2 78] -> 76
+
+
+
+double[] arrayRealNumbers = new double[10];
+  for (int i = 0; i < arrayRealNumbers.Length; i++ )
+  {
+    arrayRealNumbers[i] = new Random().Next(1, 10);
+    Console.Write(arrayRealNumbers[i] + " ");
+  }
+
+double maxNumber = arrayRealNumbers[0];
+double minNumber = arrayRealNumbers[0];
+
+  for (int i = 1; i < arrayRealNumbers.Length; i++)
+  {
+    if (maxNumber < arrayRealNumbers[i])
+    {
+      maxNumber = arrayRealNumbers[i];
+    }
+        if (minNumber > arrayRealNumbers[i])
+    {
+      minNumber = arrayRealNumbers[i];
+    }
+  }
+
+  double decision = maxNumber - minNumber;
+
+  Console.WriteLine($"\nThe difference between the max Number of array ({maxNumber}) and minimal ({minNumber}) is: {decision}");
+  
