@@ -4,7 +4,7 @@
 // 1 -3,3 8 -9,9
 // 8 7,8 -7,1 9
 
-
+/*
 
 Console.Write("Input m: ");
 int m = Convert.ToInt32(Console.ReadLine());
@@ -43,4 +43,77 @@ for (int i = 0; i < m; i++)
       }
       Console.WriteLine();
   }
+}
+*/
+
+
+
+// Задача 50: Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// 17 -> такого числа в массиве нет
+
+
+
+
+Console.Write("Please input the coordinates of the position of element divided by ' , ': ");
+Console.Write("\nLets take the array in the task (№ 47).\n");
+string? positionElement = Console.ReadLine();
+positionElement = RemovingSpaces(positionElement);
+int[] position = ParserString(positionElement);
+
+
+if(position[0] <= m 
+&& position[1] <= n 
+&& position[0] >= 0 
+&& position[1] >= 0) 
+{
+  double result = array[position[0]-1, position[1]-1];
+  Console.Write($"The definition of element : {result}");
+}
+else Console.Write($"There is not this kind of element in the array .");
+
+int[] ParserString(string input)
+{
+  int countNumbers = 1;
+  for (int i = 0; i < input.Length; i++)
+  {
+      if (input[i] == ',')
+          countNumbers++;
+  }
+
+  int[] numbers = new int[countNumbers];
+
+  int numberIndex = 0;
+  for(int i = 0; i < input.Length; i++)
+  {
+    string subString = String.Empty;
+
+    while (input[i] != ',')
+    {
+      subString += input[i].ToString();
+      if (i >= input.Length - 1)
+        break;
+      i++;
+    }
+    numbers[numberIndex] = Convert.ToInt32(subString);
+    numberIndex++;
+  }
+
+  return numbers;
+}
+
+string RemovingSpaces (string input)
+{
+  string output = String.Empty;
+  for (int i = 0; i < input.Length; i++)
+  {
+    if (input[i] != ' ') 
+    {
+      output += input[i];
+    }
+  }
+  return output;
 }
