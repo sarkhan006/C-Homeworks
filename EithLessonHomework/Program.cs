@@ -1,4 +1,5 @@
 ﻿//Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
+/*
 
 
 Console.WriteLine($"\nPlease input the size of array m x n and the range of numbers:");
@@ -58,6 +59,76 @@ void WriteArray(int[,] array)
     for (int j = 0; j < array.GetLength(1); j++)
     {
       Console.Write(array[i, j] + " ");
+    }
+    Console.WriteLine();
+  }
+}
+*/
+
+
+// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+
+Console.Clear();
+
+Console.WriteLine($"\nPlease input the size of array m x n and the range of numbers:");
+int m = InputNumbers("input m: ");
+int n = InputNumbers("input n: ");
+int range = InputNumbers("Input range : from 1 to  ");
+
+int[,] array = new int[m, n];
+CreateArray(array);
+WriteArray(array);
+
+int minSumLine = 0;
+int sumLine = SumLineElements(array, 0);
+for (int i = 1; i < array.GetLength(0); i++)
+{
+  int tempSumLine = SumLineElements(array, i);
+  if (sumLine > tempSumLine)
+  {
+    sumLine = tempSumLine;
+    minSumLine = i;
+  }
+}
+
+Console.WriteLine($"\n{minSumLine+1} - the line with the least sum  ({sumLine}) of elements ");
+
+
+int SumLineElements(int[,] array, int i)
+{
+  int sumLine = array[i,0];
+  for (int j = 1; j < array.GetLength(1); j++)
+  {
+    sumLine += array[i,j];
+  }
+  return sumLine;
+}
+
+int InputNumbers(string input)
+{
+  Console.Write(input);
+  int output = Convert.ToInt32(Console.ReadLine());
+  return output;
+}
+
+void CreateArray(int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      array[i, j] = new Random().Next(range);
+    }
+  }
+}
+
+void WriteArray (int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      Console.Write(array[i,j] + " ");
     }
     Console.WriteLine();
   }
