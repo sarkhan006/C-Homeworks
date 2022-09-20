@@ -67,7 +67,7 @@ void WriteArray(int[,] array)
 
 
 // Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
-
+/*
 Console.Clear();
 
 Console.WriteLine($"\nPlease input the size of array m x n and the range of numbers:");
@@ -102,6 +102,79 @@ int SumLineElements(int[,] array, int i)
     sumLine += array[i,j];
   }
   return sumLine;
+}
+
+int InputNumbers(string input)
+{
+  Console.Write(input);
+  int output = Convert.ToInt32(Console.ReadLine());
+  return output;
+}
+
+void CreateArray(int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      array[i, j] = new Random().Next(range);
+    }
+  }
+}
+
+void WriteArray (int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      Console.Write(array[i,j] + " ");
+    }
+    Console.WriteLine();
+  }
+}
+*/
+
+// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+
+Console.Clear();
+
+Console.WriteLine($"\nEnter the parameters of matrix and the range of numbers:");
+int m = InputNumbers("enter the number of lines of 1st matrix: ");
+int n = InputNumbers("enter the number of columns of 1st matrix (and lines of the second): ");
+int p = InputNumbers("enter the number of columns of second matrix: ");
+int range = InputNumbers("Input range : from 1 to   ");
+
+int[,] firstMartrix = new int[m, n];
+CreateArray(firstMartrix);
+Console.WriteLine($"\nFirst matrix:");
+WriteArray(firstMartrix);
+
+int[,] secondMartrix = new int[n, p];
+CreateArray(secondMartrix);
+Console.WriteLine($"\nSecond matrix:");
+WriteArray(secondMartrix);
+
+int[,] resultMatrix = new int[m,p];
+
+MultiplyMatrix(firstMartrix, secondMartrix, resultMatrix);
+Console.WriteLine($"\nThe result of first and second matrix is:");
+WriteArray(resultMatrix);
+
+void MultiplyMatrix(int[,] firstMartrix, int[,] secondMartrix, int[,] resultMatrix)
+{
+  for (int i = 0; i < resultMatrix.GetLength(0); i++)
+  {
+    for (int j = 0; j < resultMatrix.GetLength(1); j++)
+    {
+      int sum = 0;
+      for (int k = 0; k < firstMartrix.GetLength(1); k++)
+      {
+        sum += firstMartrix[i,k] * secondMartrix[k,j];
+      }
+      resultMatrix[i,j] = sum;
+    }
+  }
 }
 
 int InputNumbers(string input)
